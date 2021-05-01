@@ -1,0 +1,192 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+   
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="registrationForm.css">
+	<style>
+    select {
+        width: 150px;
+        margin: 10px;
+    }
+    select:focus {
+        min-width: 150px;
+        width: auto;
+       
+    }
+</style>
+	
+</head>
+<body>
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Sign Up</h3>
+				<div class="d-flex justify-content-end social_icon">
+				</div>
+			</div>
+			<div class="card-body">
+				<form name="myform" id="signupform" action="registrationFormServlet" method="post" >
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" name="username" id="userCheck" class="form-control" placeholder="username"  >
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" name="password" class="form-control" placeholder="password" id="myInput" >
+					</div>
+					<div class="row align-items-center remember">
+						<input type="checkbox" onclick="myFunction()">View Password
+					</div>
+					&nbsp;
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" name="firstname"  class="form-control" placeholder="first name"  >
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" name="lastname"  class="form-control" placeholder="last name"  >
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
+						</div>
+						<input type="text" name="age"  class="form-control" placeholder="age"  >
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+						</div>
+						<!--  <input type="text" name="dob"  class="form-control" placeholder="D.O.B"  >-->
+						<input type="date" id="date" name="dob" class="form-control" placeholder="D.O.B">
+						
+					</div>
+					
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-home"></i></span>
+						</div>
+						<input type="text" name="address" id="addressCheck" class="form-control" placeholder="Address">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-phone"></i></span>
+						</div>
+						<input type="text" name="phoneno" id="phoneCheck" class="form-control" placeholder="Phone Number">
+						
+					</div>
+					<!--  <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-city"></i></span>
+						</div>
+						<select name="city" id='mySelect' required>
+            			<option>City</option>
+           				 <option>Chennai</option>
+           				 <option>Coimbatore</option>
+            			<option>Nammakal</option>
+           				 <option>Erode</option>
+           				 <option>Karur</option>
+        				</select>
+						
+					</div>-->
+					
+					<div class="form-group">
+						<input type="submit" value="Register" class="btn float-right login_btn" id="submit">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script >
+
+function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>
+
+<script type="text/javascript" >
+$(document).ready(function() {
+	$('#submit').bind("click",function() 
+	{ 
+		
+		var username= $('#userCheck').val(); 
+		var password=$('#myInput').val();
+		var phoneno=$('#phoneCheck').val();
+		var address=$('#addressCheck').val();
+		
+		var userRegex = /^[a-zA-Z_]{3,16}$/ ;
+		var passwordRegex =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+		var phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        
+		if(username=='')   
+		{ 
+			alert("Username cannot be Empty"); 
+			
+			return false;        	
+
+		}
+	
+		else if(!userRegex.test(username))
+		{
+			alert( "Enter a valid username containing alphabets and _ ");
+             return false;
+		}
+		else if(password==''){
+			alert("password cannot be Empty"); 
+			
+			return false;   
+		}
+		else if(!passwordRegex.test(password))
+		{
+			alert( "Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number");
+             return false;
+		}
+		
+		else if(phoneno==''){
+			alert("Phone number cannot be Empty"); 
+			
+			return false;
+		}
+        else if(!phoneRegex.test(phoneno))	
+	     {
+		alert( " Enter a valid Phone number...!! ");
+		return false;
+	     }
+        else if(address==''){
+			alert("address cannot be Empty"); 
+			
+			return false;
+		}
+		
+		
+	}); 
+});
+</script>
